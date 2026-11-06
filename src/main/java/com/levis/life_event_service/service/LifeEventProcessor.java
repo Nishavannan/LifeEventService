@@ -32,7 +32,7 @@ public class LifeEventProcessor {
                     .toString()
                     .substring(0, 10)
                     .toUpperCase();
-        //creating greeting Based on Event
+        //3.creating greeting Based on Event
 
         String greeting;
 
@@ -48,12 +48,12 @@ public class LifeEventProcessor {
                 throw new IllegalArgumentException("Unsupported event type");
 
         }
-        //me creating outbound message
+        //4.me creating outbound message
         SmsMessage smsMessage = new SmsMessage(
                 request.getCustomerName(),greeting,voucherId
         );
 
-        //outbound kafka topic
+        //5.outbound kafka topic
         kafkaTemplate.send("customer.comms.sms",request.getMobile(),smsMessage).get();
 
         }
